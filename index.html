@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidades · día a día · corte 28 septiembre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1E39;--teal:#39BB9B;--amarillo:#FED41E;--morado:#5A2899;--naranja:#F98D21;
+--papel:#F5F8F9;--blanco:#FFF;--linea:#DCE5E8;--suave:#5B6C80;--dato:#EDF2F4;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--papel);color:var(--navy);font-family:'Asap',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+header.top{background:var(--navy);color:#fff;padding:28px 0 24px;}
+header.top .eyebrow{color:var(--teal);font-weight:600;font-size:13.5px;margin:0 0 5px;}
+header.top h1{margin:0;font-size:clamp(23px,3.2vw,33px);font-weight:700;line-height:1.15;letter-spacing:-.02em;}
+header.top p.sub{margin:9px 0 0;color:#B9C7D6;font-size:14px;max-width:66ch;}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--blanco);border-bottom:1px solid var(--linea);}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;}
+nav.tabs button{font-family:inherit;font-size:15px;font-weight:600;background:none;border:none;border-bottom:3px solid transparent;color:var(--suave);padding:15px 15px 12px;cursor:pointer;white-space:nowrap;}
+nav.tabs button:hover{color:var(--navy);}
+nav.tabs button.on{color:var(--navy);border-bottom-color:var(--teal);}
+nav.tabs button:focus-visible{outline:2px solid var(--morado);outline-offset:-4px;}
+main{padding:28px 0 60px;}
+.panel{display:none;} .panel.on{display:block;}
+.panel>h2.titulo{font-size:23px;margin:0 0 3px;font-weight:700;letter-spacing:-.01em;}
+.panel>p.bajada{margin:0 0 20px;color:var(--suave);font-size:14.5px;max-width:66ch;}
+.embudo{display:flex;flex-wrap:wrap;margin:0 0 18px;background:var(--blanco);border:1px solid var(--linea);border-radius:10px;overflow:hidden;}
+.paso{flex:1 1 140px;padding:14px 16px;border-right:1px solid var(--linea);}
+.paso:last-child{border-right:none;}
+.paso .orden{font-size:10.5px;font-weight:700;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;}
+.paso .v{font-size:25px;font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-top:2px;}
+.paso .l{font-size:12.4px;color:var(--suave);}
+.paso.pct .v{color:var(--morado);} .paso.dinero .v{color:#166B54;} .paso.cero .v{color:var(--naranja);}
+.bloque{background:var(--blanco);border:1px solid var(--linea);border-radius:10px;padding:19px 22px 17px;margin-bottom:18px;}
+.bloque h3{margin:0 0 13px;font-size:17px;font-weight:700;}
+.bloque h3 .n{display:inline-block;width:22px;height:22px;border-radius:5px;background:var(--dato);font-size:12.5px;font-weight:700;text-align:center;line-height:22px;margin-right:9px;vertical-align:2px;}
+.hoy{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:20px;background:#FEF4CE;color:#7A5D00;font-size:11.5px;font-weight:700;vertical-align:3px;}
+h4.graf{margin:20px 0 9px;font-size:14px;font-weight:700;}
+h4.graf:first-of-type{margin-top:2px;}
+.serie{display:flex;align-items:flex-end;gap:3px;border-bottom:2px solid var(--linea);padding:0 2px;}
+.serie .d{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;}
+.serie .d.hoy{background:rgba(254,212,30,.25);border-radius:4px 4px 0 0;}
+.serie .c{font-size:10px;font-weight:700;margin-bottom:3px;}
+.serie .c.v0{color:#BCC8D2;font-weight:400;}
+.serie .b{width:100%;border-radius:3px 3px 0 0;min-height:2px;}
+.serie .b.teal{background:var(--teal);} .serie .b.morado{background:var(--morado);}
+.serie .b.naranja{background:var(--naranja);} .serie .b.navy{background:var(--navy);}
+.eje{display:flex;gap:3px;padding:5px 2px 0;}
+.eje span{flex:1;text-align:center;font-size:10px;color:var(--suave);}
+.eje span.hoy{color:var(--navy);font-weight:700;background:rgba(254,212,30,.4);border-radius:3px;}
+.tabla-cont{overflow-x:auto;}
+table{border-collapse:collapse;width:100%;font-size:14.2px;}
+th{background:var(--dato);text-align:left;padding:8px 11px;font-weight:600;border-bottom:2px solid var(--linea);white-space:nowrap;}
+td{padding:8px 11px;border-bottom:1px solid var(--linea);vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;}
+tr.total td{font-weight:700;background:#F1F6F8;border-top:2px solid var(--linea);}
+tr.sub td{background:#FAFCFD;font-weight:600;}
+tr.fhoy td{background:#FFFBEA;}
+.col-hoy{background:#FFFBEA;} th.col-hoy{background:#FDEFC2;}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+td.utm{font-family:ui-monospace,Menlo,monospace;font-size:12.4px;color:var(--morado);word-break:break-all;}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:12.2px;font-weight:600;white-space:nowrap;}
+.p-ok{background:#DFF3EC;color:#166B54;} .p-med{background:#FEF4CE;color:#7A5D00;}
+.p-no{background:#FDE7D2;color:#8A4409;} .p-inv{background:#E8E2F4;color:#43206F;}
+.barras .item{display:grid;grid-template-columns:200px 1fr 62px;gap:12px;align-items:center;margin-bottom:8px;font-size:13.6px;}
+.barras .track{background:var(--dato);border-radius:4px;height:21px;overflow:hidden;}
+.barras .fill{height:100%;border-radius:4px;background:var(--teal);}
+.f-am{background:var(--amarillo)!important;} .f-mo{background:var(--morado)!important;}
+.f-na{background:var(--naranja)!important;} .f-nv{background:var(--navy)!important;}
+.barras .val{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;}
+.pasos{display:flex;flex-wrap:wrap;gap:8px;}
+.pasos .p{flex:1 1 115px;background:var(--dato);border-radius:8px;padding:11px 13px;border-left:4px solid var(--teal);}
+.pasos .p.b{border-left-color:var(--amarillo);} .pasos .p.c{border-left-color:var(--naranja);}
+.pasos .p.d{border-left-color:var(--morado);}
+.pasos .p .n{font-size:21px;font-weight:700;line-height:1.1;}
+.pasos .p .t{font-size:12.3px;color:var(--suave);}
+.hoybox{background:#FFFDF5;border:2px solid var(--amarillo);border-radius:10px;padding:17px 21px 15px;margin:0 0 18px;}
+.hoybox h3{margin:0 0 11px;font-size:16px;font-weight:700;}
+.hoybox h3 .dia{display:inline-block;background:var(--amarillo);border-radius:5px;padding:1px 9px;font-size:12px;margin-right:9px;vertical-align:2px;}
+.hoybox .filas{display:flex;flex-wrap:wrap;gap:8px;}
+.hoybox .f{flex:1 1 135px;background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:10px 12px;}
+.hoybox .f .n{font-size:20px;font-weight:700;line-height:1.1;}
+.hoybox .f .t{font-size:12.3px;color:var(--suave);}
+.hoybox .f.bien .n{color:#166B54;} .hoybox .f.ojo .n{color:var(--naranja);}
+.aviso{background:#FFF6E6;border:1px dashed var(--naranja);border-radius:8px;padding:11px 15px;font-size:14px;margin:0 0 18px;}
+.analisis{background:#EDF7F4;border-left:4px solid var(--teal);border-radius:8px;padding:11px 15px;margin:14px 0 0;font-size:14.2px;}
+.analisis .et{display:block;font-weight:700;font-size:12.5px;color:#166B54;margin-bottom:3px;}
+.analisis p{margin:0;} .analisis p+p{margin-top:6px;}
+.accion{background:#FFF6E6;border-left:4px solid var(--naranja);border-radius:8px;padding:11px 15px;margin:9px 0 0;font-size:14.2px;}
+.accion .et{display:block;font-weight:700;font-size:12.5px;color:#8A4409;margin-bottom:3px;}
+.accion p{margin:0;} .accion p+p{margin-top:6px;}
+.nota{font-size:12.5px;color:var(--suave);margin:8px 0 0;}
+@media(max-width:860px){.bloque{padding:15px 13px;}.barras .item{grid-template-columns:120px 1fr 48px;font-size:12.5px;}
+.serie .c{display:none;}.eje span{font-size:7.5px;}}
+footer{border-top:1px solid var(--linea);padding:20px 0 34px;color:var(--suave);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <p class="eyebrow">Entrelingo Group · Comunidades</p>
+  <h1>Reporte diario de comunidades · 1 al 28 de septiembre de 2026</h1>
+  <p class="sub">Tráfico y conversión día por día en cada línea, con el día de hoy resaltado. Fuente: GA4 Data API, extracción por tramos sin truncado. Moneda: AUD.</p>
+</div></header>
+
+<nav class="tabs"><div class="wrap">
+  <button class="on" data-t="traducciones">Entrelingo Traducciones</button>
+  <button data-t="skillspro">SkillsPRO</button>
+  <button data-t="australiapro">AustraliaPRO Rayos X</button>
+  <button data-t="gestion">Gestión operativa</button>
+</div></nav>
+
+<main><div class="wrap">
+
+<!-- TRADUCCIONES -->
+<section class="panel on" id="traducciones">
+  <h2 class="titulo">Entrelingo Traducciones</h2>
+  <p class="bajada">Cuatro enlaces medidos en GA4 más las ventas cerradas por WhatsApp de Operaciones.</p>
+
+  <div class="hoybox">
+    <h3><span class="dia">Hoy · 28 sep</span>Resultados del día</h3>
+    <div class="filas">
+      <div class="f ojo"><div class="n">0</div><div class="t">Sesiones al cotizador hoy</div></div>
+      <div class="f bien"><div class="n">13</div><div class="t">Ventas del mes</div></div>
+      <div class="f bien"><div class="n">$1.566,78</div><div class="t">Acumulado del mes</div></div>
+      <div class="f"><div class="n">$64,89</div><div class="t">Venta nueva del 25, ya en GA4</div></div>
+    </div>
+  </div>
+
+  <div class="embudo">
+    <div class="paso"><div class="orden">1 · Clics</div><div class="v">158</div><div class="l">Sesiones · 4 enlaces</div></div>
+    <div class="paso"><div class="orden">2 · Conversión</div><div class="v">9</div><div class="l">Compras en GA4</div></div>
+    <div class="paso pct"><div class="orden">3 · Tasa</div><div class="v">5,7 %</div><div class="l">Compras sobre clics</div></div>
+    <div class="paso dinero"><div class="orden">4 · GA4</div><div class="v">$580,13</div><div class="l">9 compras atribuidas</div></div>
+    <div class="paso dinero"><div class="orden">5 · Total</div><div class="v">$1.566,78</div><div class="l">Con WhatsApp Operaciones</div></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">1</span>Tráfico día por día</h3>
+    <div class="serie" style="height:120px"><div class="d"><span class="c">1</span><div class="b teal" style="height:5%"></div></div><div class="d"><span class="c v0">0</span><div class="b teal" style="height:0%"></div></div><div class="d"><span class="c">9</span><div class="b teal" style="height:47%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">4</span><div class="b teal" style="height:21%"></div></div><div class="d"><span class="c v0">0</span><div class="b teal" style="height:0%"></div></div><div class="d"><span class="c">3</span><div class="b teal" style="height:16%"></div></div><div class="d"><span class="c">7</span><div class="b teal" style="height:37%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">11</span><div class="b teal" style="height:58%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">5</span><div class="b teal" style="height:26%"></div></div><div class="d"><span class="c">1</span><div class="b teal" style="height:5%"></div></div><div class="d"><span class="c">7</span><div class="b teal" style="height:37%"></div></div><div class="d"><span class="c">12</span><div class="b teal" style="height:63%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">19</span><div class="b teal" style="height:100%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">5</span><div class="b teal" style="height:26%"></div></div><div class="d"><span class="c">10</span><div class="b teal" style="height:53%"></div></div><div class="d"><span class="c">8</span><div class="b teal" style="height:42%"></div></div><div class="d"><span class="c">2</span><div class="b teal" style="height:11%"></div></div><div class="d"><span class="c">5</span><div class="b teal" style="height:26%"></div></div><div class="d"><span class="c">2</span><div class="b teal" style="height:11%"></div></div><div class="d"><span class="c">3</span><div class="b teal" style="height:16%"></div></div><div class="d"><span class="c">3</span><div class="b teal" style="height:16%"></div></div><div class="d"><span class="c">1</span><div class="b teal" style="height:5%"></div></div><div class="d hoy"><span class="c v0">0</span><div class="b teal" style="height:0%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Conversiones día por día</h4>
+    <div class="serie" style="height:70px"><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c">2</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">2</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d hoy"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Tráfico por enlace</h4>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Enlace</th><th class="num">Sesiones</th><th class="num">Conv.</th><th class="num">Tasa</th><th class="num">Ingresos AUD</th></tr></thead>
+      <tbody>
+        <tr><td class="utm">comunidades / cotizador / whatssapp</td><td class="num">127</td><td class="num">7</td><td class="num">5,5 %</td><td class="num">463,66</td></tr>
+        <tr><td class="utm">comunidades / cotizador / facebook</td><td class="num">24</td><td class="num">1</td><td class="num">4,2 %</td><td class="num">50,48</td></tr>
+        <tr><td class="utm">linkedin / cotizador / entrelingo</td><td class="num">5</td><td class="num">0</td><td class="num">0 %</td><td class="num">0</td></tr>
+        <tr><td class="utm">comunidades / codigod / maria</td><td class="num">2</td><td class="num">1</td><td class="num">50,0 %</td><td class="num">65,99</td></tr>
+        <tr class="total"><td>Total</td><td class="num">158</td><td class="num">9</td><td class="num">5,7 %</td><td class="num">580,13</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>El cotizador por WhatsApp cerró en 127 sesiones y 7 compras, pero lleva tres días seguidos en cero: nada el 26, el 27 ni hoy. Su último movimiento fue el 25.</p>
+      <p>Facebook tomó el relevo esos días con 3 sesiones el 26 y 1 el 27, y suma 24 en el mes. Es el único enlace del cotizador que siguió activo el fin de semana.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Reactivar el enlace de WhatsApp antes del cierre de mes: tres días en cero en el enlace que genera el 80 % del ingreso de la línea.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">2</span>Ventas del mes</h3>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Fecha</th><th>Orden</th><th>Origen</th><th class="num">AUD</th></tr></thead>
+      <tbody>
+        <tr><td>1 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">91,96</td></tr>
+        <tr><td>7 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">52,79</td></tr>
+        <tr><td>10 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">75,87</td></tr>
+        <tr><td>11 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">98,97</td></tr>
+        <tr><td>11 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">41,79</td></tr>
+        <tr><td>14 sep</td><td>—</td><td>Código de descuento</td><td class="num">65,99</td></tr>
+        <tr><td>23 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">37,39</td></tr>
+        <tr><td>23 sep</td><td>—</td><td>Cotizador Facebook</td><td class="num">50,48</td></tr>
+        <tr><td>25 sep</td><td>—</td><td>Cotizador WhatsApp</td><td class="num">64,89</td></tr>
+        <tr class="sub"><td colspan="3">Subtotal atribuido en GA4 · 9 compras</td><td class="num">580,13</td></tr>
+        <tr class="fhoy"><td>3 sep</td><td>C07027</td><td>WhatsApp Operaciones <span class="hoy">confirmada hoy</span></td><td class="num">39,99</td></tr>
+        <tr><td>—</td><td>—</td><td>WhatsApp Operaciones · Milton Jurado</td><td class="num">360,81</td></tr>
+        <tr class="fhoy"><td>11 sep</td><td>C07119</td><td>WhatsApp Operaciones <span class="hoy">confirmada hoy</span></td><td class="num">305,92</td></tr>
+        <tr><td>—</td><td>C07082</td><td>WhatsApp Operaciones · Brenda</td><td class="num">279,93</td></tr>
+        <tr class="sub"><td colspan="3">Subtotal WhatsApp Operaciones · 4 ventas</td><td class="num">986,65</td></tr>
+        <tr class="total"><td colspan="3">Total acumulado · 13 ventas</td><td class="num">1.566,78</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>El mes cierra en $1.566,78 con 13 ventas. Es la única de las tres líneas con ingresos atribuidos y, con la meta original de $1.000, la superó en un 57 %.</p>
+      <p>WhatsApp de Operaciones aporta el 63 % del ingreso con 4 de las 13 ventas. Su ticket promedio es de $246,66 frente a $64,46 del cotizador: casi cuatro veces mayor.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Al cerrar el mes, separar en el reporte lo que viene del cotizador de lo que viene de conversación: son dos motores distintos y hoy se leen juntos.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">3</span>Contactos enviados a WhatsApp Operaciones<span class="hoy">actualizado hoy</span></h3>
+    <div class="pasos">
+      <div class="p"><div class="n">20</div><div class="t">Enviados</div></div>
+      <div class="p b"><div class="n">14</div><div class="t">Contactados · 70 %</div></div>
+      <div class="p d"><div class="n">4</div><div class="t">Compraron · 28,6 %</div></div>
+      <div class="p c"><div class="n">$986,65</div><div class="t">Valor generado</div></div>
+    </div>
+    <div class="tabla-cont" style="margin-top:18px"><table>
+      <thead><tr><th>Lote</th><th class="num">Enviados</th><th class="num">Contactados</th><th class="num">Compraron</th><th class="num">Valor AUD</th></tr></thead>
+      <tbody>
+        <tr class="fhoy"><td>28 ago – 3 sep</td><td class="num">8</td><td class="num">6</td><td class="num">1</td><td class="num">39,99</td></tr>
+        <tr class="fhoy"><td>3 – 11 sep</td><td class="num">6</td><td class="num">6</td><td class="num">2</td><td class="num">666,73</td></tr>
+        <tr><td>14 – 17 sep</td><td class="num">6</td><td class="num">2</td><td class="num">1</td><td class="num">279,93</td></tr>
+        <tr class="total"><td>Total</td><td class="num">20</td><td class="num">14</td><td class="num">4</td><td class="num">986,65</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>La tasa de conversión sobre contactados sube de 14,3 % a 28,6 %: más de una de cada cuatro personas que responden termina comprando.</p>
+      <p>El lote del 3 al 11 de septiembre es el mejor de los tres: contactó a los 6 enviados y cerró 2 ventas por $666,73. El del 14 al 17 sigue siendo el más flojo en contacto, con 2 de 6.</p>
+      <p>Las 6 personas que nunca escribieron son el punto de fuga: con la tasa actual, equivaldrían a una o dos ventas más.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Si la persona no escribe en 48 horas, que Operaciones tome la iniciativa y le escriba: el dato muestra que quien entra en conversación compra en el 29 % de los casos.</p></div>
+  </div>
+</section>
+
+<!-- SKILLSPRO -->
+<section class="panel" id="skillspro">
+  <h2 class="titulo">SkillsPRO</h2>
+  <p class="bajada">Sesiones estratégicas agendadas desde comunidades y tráfico del enlace en español.</p>
+
+  <div class="hoybox">
+    <h3><span class="dia">Hoy · 28 sep</span>Resultados del día</h3>
+    <div class="filas">
+      <div class="f ojo"><div class="n">0</div><div class="t">Sesiones al enlace hoy</div></div>
+      <div class="f"><div class="n">18</div><div class="t">Agendas del mes · sin cambio desde el 24</div></div>
+      <div class="f"><div class="n">90 %</div><div class="t">De la meta de 20</div></div>
+      <div class="f"><div class="n">10</div><div class="t">Gestiones de la línea hoy</div></div>
+    </div>
+  </div>
+
+  <div class="embudo">
+    <div class="paso"><div class="orden">1 · Clics</div><div class="v">33</div><div class="l">Sesiones · enlace español</div></div>
+    <div class="paso"><div class="orden">2 · Reservas GA4</div><div class="v">4</div><div class="l">Tasa 12,1 %</div></div>
+    <div class="paso"><div class="orden">3 · Agendas</div><div class="v">18</div><div class="l">Registro de Airtable</div></div>
+    <div class="paso"><div class="orden">4 · Conversión</div><div class="v">1</div><div class="l">Venta cerrada</div></div>
+    <div class="paso pct"><div class="orden">5 · Meta</div><div class="v">90 %</div><div class="l">18 de 20 agendas</div></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">1</span>Tráfico día por día</h3>
+    <div class="serie" style="height:105px"><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c">6</span><div class="b morado" style="height:100%"></div></div><div class="d"><span class="c">3</span><div class="b morado" style="height:50%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">4</span><div class="b morado" style="height:67%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">3</span><div class="b morado" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">5</span><div class="b morado" style="height:83%"></div></div><div class="d"><span class="c">3</span><div class="b morado" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c">1</span><div class="b morado" style="height:17%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div><div class="d hoy"><span class="c v0">0</span><div class="b morado" style="height:0%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Reservas de sesión día por día</h4>
+    <div class="serie" style="height:60px"><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d hoy"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Tráfico por enlace</h4>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Enlace</th><th class="num">Sesiones</th><th class="num">Reservas</th><th class="num">Tasa</th></tr></thead>
+      <tbody>
+        <tr><td class="utm">whatsapp / community / community_es</td><td class="num">33</td><td class="num">4</td><td class="num">12,1 %</td></tr>
+        <tr><td class="utm">comunidades / webinar / whatssapp <span class="pill p-inv">webinar</span></td><td class="num">24</td><td class="num">11</td><td class="num">45,8 %</td></tr>
+        <tr><td class="utm">comunidades / webinar / facebook <span class="pill p-inv">webinar</span></td><td class="num">6</td><td class="num">0</td><td class="num">0 %</td></tr>
+        <tr><td class="utm">comunidades / webinar / maria <span class="pill p-inv">webinar</span></td><td class="num">3</td><td class="num">0</td><td class="num">0 %</td></tr>
+        <tr><td class="utm">comunidades / webinar / linkedin <span class="pill p-inv">webinar</span></td><td class="num">2</td><td class="num">0</td><td class="num">0 %</td></tr>
+        <tr class="total"><td>Total</td><td class="num">68</td><td class="num">15</td><td class="num">22,1 %</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>El enlace en español cierra en 33 sesiones con una tasa del 12,1 %: una de cada ocho visitas agenda. Lleva cuatro días sin registrar tráfico, desde el 25.</p>
+      <p>Los enlaces del webinar acumulan 35 sesiones y 11 registros, todos del enlace de WhatsApp y todos antes del 9 de septiembre. En los últimos cuatro días el equipo dedicó 49 gestiones al webinar y el tráfico medido apenas se movió.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Confirmar qué enlace llevan las publicaciones del webinar: si no llevan UTM, esas 49 gestiones no aparecen en ningún reporte.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">2</span>Evolución de agendas</h3>
+    <div class="barras">
+      <div class="item"><span>16 sep</span><div class="track"><div class="fill f-nv" style="width:67%"></div></div><span class="val">12</span></div>
+      <div class="item"><span>17 sep</span><div class="track"><div class="fill f-nv" style="width:72%"></div></div><span class="val">13</span></div>
+      <div class="item"><span>22 sep</span><div class="track"><div class="fill f-nv" style="width:83%"></div></div><span class="val">15</span></div>
+      <div class="item"><span>23 sep</span><div class="track"><div class="fill f-nv" style="width:94%"></div></div><span class="val">17</span></div>
+      <div class="item"><span>24 al 28 sep</span><div class="track"><div class="fill f-am" style="width:100%"></div></div><span class="val">18</span></div>
+      <div class="item"><span>Meta del mes</span><div class="track"><div class="fill f-na" style="width:111%"></div></div><span class="val">20</span></div>
+    </div>
+    <p class="nota">Sin agendas nuevas desde el 24 de septiembre. Faltan 2 para la meta y quedan 2 días del mes.</p>
+    <h4 class="graf">Estado de las agendas · corte del 23</h4>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Estado</th><th class="num">Facebook</th><th class="num">WhatsApp</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td>Invitado</td><td class="num">3</td><td class="num">2</td><td class="num">5</td></tr>
+        <tr><td>Programada</td><td class="num">3</td><td class="num">2</td><td class="num">5</td></tr>
+        <tr><td>Ejecutada</td><td class="num">3</td><td class="num">2</td><td class="num">5</td></tr>
+        <tr><td>Duplicado</td><td class="num">1</td><td class="num">0</td><td class="num">1</td></tr>
+        <tr><td>Cancelado</td><td class="num">1</td><td class="num">0</td><td class="num">1</td></tr>
+        <tr class="total"><td>Total</td><td class="num">11</td><td class="num">6</td><td class="num">17</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>Cuatro días sin agendas nuevas. Con 18 de 20 y dos días por delante, la meta se juega en las 5 invitaciones que siguen sin fecha.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Trabajar esas 5 invitaciones hoy y mañana: con dos que se concreten se cumple el mes.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">3</span>Venta del mes</h3>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Cliente</th><th>Servicio</th><th class="num">Sin GST</th><th class="num">Con GST</th></tr></thead>
+      <tbody><tr><td>Natasha Bustos</td><td>Diagnóstico del perfil profesional</td><td class="num">299,00</td><td class="num">328,90</td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- AUSTRALIAPRO -->
+<section class="panel" id="australiapro">
+  <h2 class="titulo">AustraliaPRO · Rayos X</h2>
+  <p class="bajada">Cuatro enlaces activos a la landing de Rayos X migratorio.</p>
+
+  <div class="hoybox">
+    <h3><span class="dia">Hoy · 28 sep</span>Resultados del día</h3>
+    <div class="filas">
+      <div class="f"><div class="n">1</div><div class="t">Sesión · WhatsApp español</div></div>
+      <div class="f bien"><div class="n">73</div><div class="t">Sesiones del mes · +26 % en 3 días</div></div>
+      <div class="f bien"><div class="n">7</div><div class="t">Formularios · 1 nuevo el 26</div></div>
+      <div class="f ojo"><div class="n">2</div><div class="t">Agendas · sin citas desde el 15</div></div>
+    </div>
+  </div>
+
+  <div class="embudo">
+    <div class="paso"><div class="orden">1 · Clics</div><div class="v">73</div><div class="l">Sesiones a Rayos X</div></div>
+    <div class="paso"><div class="orden">2 · Formularios</div><div class="v">7</div><div class="l">Tasa 9,6 %</div></div>
+    <div class="paso"><div class="orden">3 · Agendas</div><div class="v">2</div><div class="l">1 elegible · 1 no elegible</div></div>
+    <div class="paso pct"><div class="orden">4 · Elegibilidad</div><div class="v">50 %</div><div class="l">1 de 2 agendas</div></div>
+    <div class="paso cero"><div class="orden">5 · Ingreso</div><div class="v">$0</div><div class="l">Sin venta cerrada</div></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">1</span>Tráfico día por día</h3>
+    <div class="serie" style="height:115px"><div class="d"><span class="c">2</span><div class="b naranja" style="height:18%"></div></div><div class="d"><span class="c">2</span><div class="b naranja" style="height:18%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b naranja" style="height:9%"></div></div><div class="d"><span class="c">5</span><div class="b naranja" style="height:45%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c">2</span><div class="b naranja" style="height:18%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c">3</span><div class="b naranja" style="height:27%"></div></div><div class="d"><span class="c">5</span><div class="b naranja" style="height:45%"></div></div><div class="d"><span class="c">3</span><div class="b naranja" style="height:27%"></div></div><div class="d"><span class="c">7</span><div class="b naranja" style="height:64%"></div></div><div class="d"><span class="c">11</span><div class="b naranja" style="height:100%"></div></div><div class="d"><span class="c">1</span><div class="b naranja" style="height:9%"></div></div><div class="d"><span class="c v0">0</span><div class="b naranja" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b naranja" style="height:9%"></div></div><div class="d"><span class="c">5</span><div class="b naranja" style="height:45%"></div></div><div class="d"><span class="c">5</span><div class="b naranja" style="height:45%"></div></div><div class="d"><span class="c">11</span><div class="b naranja" style="height:100%"></div></div><div class="d"><span class="c">5</span><div class="b naranja" style="height:45%"></div></div><div class="d"><span class="c">3</span><div class="b naranja" style="height:27%"></div></div><div class="d hoy"><span class="c">1</span><div class="b naranja" style="height:9%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Formularios enviados día por día</h4>
+    <div class="serie" style="height:60px"><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">2</span><div class="b navy" style="height:100%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d"><span class="c">1</span><div class="b navy" style="height:50%"></div></div><div class="d"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div><div class="d hoy"><span class="c v0">0</span><div class="b navy" style="height:0%"></div></div></div><div class="eje"><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="">25</span><span class="">26</span><span class="">27</span><span class="hoy">28</span></div>
+    <h4 class="graf">Tráfico por enlace</h4>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Enlace</th><th class="num">Sesiones</th><th class="num">Conv.</th><th class="num">Tasa</th></tr></thead>
+      <tbody>
+        <tr><td class="utm">whatsapp / community / rayos_x_migratorio / espanol</td><td class="num">41</td><td class="num">4</td><td class="num">9,8 %</td></tr>
+        <tr><td class="utm">facebook / community / rayos_x_migratorio / espanol</td><td class="num">23</td><td class="num">1</td><td class="num">4,3 %</td></tr>
+        <tr><td class="utm">facebook / community / rayos_x_migratorio / ingles</td><td class="num">5</td><td class="num">2</td><td class="num">40,0 %</td></tr>
+        <tr><td class="utm">linkedin / community / rayos_x_migratorio / espanol</td><td class="num">4</td><td class="num">0</td><td class="num">0 %</td></tr>
+        <tr><td class="utm">whatsapp e ingles · linkedin ingles</td><td class="num">0</td><td class="num">0</td><td class="num">—</td></tr>
+        <tr class="total"><td>Total</td><td class="num">73</td><td class="num">7</td><td class="num">9,6 %</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>El enlace de WhatsApp en español tuvo su mejor racha del mes entre el 25 y el 27: 10, 4 y 2 sesiones. Cierra con 41 del total de 73 y es el de más volumen de la línea.</p>
+      <p>Y volvió a convertir: el 26 se registró un formulario nuevo, el primero desde el 19. Con eso la línea llega a 7 formularios y una tasa del 9,6 %.</p>
+      <p>Aparece además una sesión de hoy por youtube / social / canal hacia el booking de AustraliaPRO, fuera del lote de comunidades.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Sostener la publicación del enlace de WhatsApp en los últimos días del mes: es el único que está produciendo formularios.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">2</span>Agendas y derivaciones</h3>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Fecha</th><th>Cliente</th><th>Etapa CRM</th><th>Origen</th></tr></thead>
+      <tbody>
+        <tr><td>8 sep</td><td>Lesly</td><td><span class="pill p-inv">Elegible Rayos X</span></td><td>Facebook · español</td></tr>
+        <tr><td>15 sep</td><td>Ramón Cedeño · #6750</td><td><span class="pill p-no">No elegible Rayos X</span></td><td>WhatsApp · rayosx</td></tr>
+        <tr class="total"><td colspan="2">2 agendas</td><td>1 elegible</td><td>50 % de elegibilidad</td></tr>
+      </tbody>
+    </table></div>
+    <h4 class="graf">Contactos enviados al WhatsApp de Valentina</h4>
+    <div class="pasos">
+      <div class="p"><div class="n">11</div><div class="t">Enviados</div></div>
+      <div class="p b"><div class="n">10</div><div class="t">Enviados a Rayos X · 91 %</div></div>
+      <div class="p d"><div class="n">1</div><div class="t">Contactado, sin derivar</div></div>
+      <div class="p c"><div class="n">0</div><div class="t">Citas nuevas desde el 15</div></div>
+    </div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>Diez personas derivadas y ninguna cita nueva en diez días. Entre la derivación y la cita agendada se sigue perdiendo el rastro.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Pedir a Valentina el estado de esas 10 derivaciones: cuántas agendaron y cuántas quedaron sin respuesta.</p></div>
+  </div>
+</section>
+
+<!-- GESTION -->
+<section class="panel" id="gestion">
+  <h2 class="titulo">Gestión operativa</h2>
+  <p class="bajada">Actividad registrada día por día. Los fines de semana no tienen registro.</p>
+
+  <div class="hoybox">
+    <h3><span class="dia">Hoy · 28 sep</span>Gestión del día</h3>
+    <div class="filas">
+      <div class="f"><div class="n">30</div><div class="t">Gestiones del día</div></div>
+      <div class="f bien"><div class="n">15</div><div class="t">Comentarios · el récord del periodo</div></div>
+      <div class="f"><div class="n">12</div><div class="t">De Rayos X</div></div>
+      <div class="f"><div class="n">30</div><div class="t">Todas en grupos externos</div></div>
+    </div>
+  </div>
+
+  <div class="embudo">
+    <div class="paso"><div class="orden">Total</div><div class="v">276</div><div class="l">Gestiones en 8 días</div></div>
+    <div class="paso"><div class="orden">Publicación</div><div class="v">215</div><div class="l">77,9 %</div></div>
+    <div class="paso"><div class="orden">Comentario</div><div class="v">47</div><div class="l">17,0 %</div></div>
+    <div class="paso"><div class="orden">Mensaje DM</div><div class="v">14</div><div class="l">5,1 %</div></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">1</span>Gestiones por día</h3>
+    <div class="barras">
+      <div class="item"><span>17 sep</span><div class="track"><div class="fill f-nv" style="width:100%"></div></div><span class="val">55</span></div>
+      <div class="item"><span>18 sep</span><div class="track"><div class="fill f-nv" style="width:35%"></div></div><span class="val">19</span></div>
+      <div class="item"><span>21 sep</span><div class="track"><div class="fill f-nv" style="width:65%"></div></div><span class="val">36</span></div>
+      <div class="item"><span>22 sep</span><div class="track"><div class="fill f-nv" style="width:91%"></div></div><span class="val">50</span></div>
+      <div class="item"><span>23 sep</span><div class="track"><div class="fill f-nv" style="width:9%"></div></div><span class="val">5</span></div>
+      <div class="item"><span>24 sep</span><div class="track"><div class="fill f-nv" style="width:84%"></div></div><span class="val">46</span></div>
+      <div class="item"><span>25 sep</span><div class="track"><div class="fill f-nv" style="width:64%"></div></div><span class="val">35</span></div>
+      <div class="item"><span>28 sep · hoy</span><div class="track"><div class="fill f-am" style="width:55%"></div></div><span class="val">30</span></div>
+    </div>
+    <h4 class="graf">Gestiones por acción</h4><div class="tabla-cont"><table><thead><tr><th>Acción</th><th class="num">17 sep</th><th class="num">18 sep</th><th class="num">21 sep</th><th class="num">22 sep</th><th class="num">23 sep</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead><tbody><tr><td>Comentario</td><td class="num">11</td><td class="num">3</td><td class="num">0</td><td class="num">7</td><td class="num">3</td><td class="num">3</td><td class="num">5</td><td class="num col-hoy">15</td><td class='num'>47</td></tr><tr><td>Mensaje DM</td><td class="num">4</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">1</td><td class="num col-hoy">2</td><td class='num'>14</td></tr><tr><td>Publicación</td><td class="num">40</td><td class="num">15</td><td class="num">36</td><td class="num">42</td><td class="num">0</td><td class="num">40</td><td class="num">29</td><td class="num col-hoy">13</td><td class='num'>215</td></tr><tr class="total"><td>Total</td><td class="num">55</td><td class="num">19</td><td class="num">36</td><td class="num">50</td><td class="num">5</td><td class="num">46</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">276</td></tr></tbody></table></div>
+    <h4 class="graf">Gestiones por servicio</h4><div class="tabla-cont"><table><thead><tr><th>Servicio</th><th class="num">17 sep</th><th class="num">18 sep</th><th class="num">21 sep</th><th class="num">22 sep</th><th class="num">23 sep</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead><tbody><tr><td>AustraliaPRO</td><td class="num">23</td><td class="num">16</td><td class="num">0</td><td class="num">11</td><td class="num">2</td><td class="num">28</td><td class="num">1</td><td class="num col-hoy">12</td><td class='num'>93</td></tr><tr><td>Entrelingo</td><td class="num">15</td><td class="num">3</td><td class="num">0</td><td class="num">39</td><td class="num">3</td><td class="num">4</td><td class="num">33</td><td class="num col-hoy">8</td><td class='num'>105</td></tr><tr><td>SkillsPRO</td><td class="num">17</td><td class="num">0</td><td class="num">36</td><td class="num">0</td><td class="num">0</td><td class="num">14</td><td class="num">0</td><td class="num col-hoy">10</td><td class='num'>77</td></tr><tr><td>JobPRO</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num col-hoy">0</td><td class='num'>1</td></tr><tr class="total"><td>Total</td><td class="num">55</td><td class="num">19</td><td class="num">36</td><td class="num">50</td><td class="num">5</td><td class="num">46</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">276</td></tr></tbody></table></div>
+    <h4 class="graf">Gestiones por canal</h4><div class="tabla-cont"><table><thead><tr><th>Canal</th><th class="num">17 sep</th><th class="num">18 sep</th><th class="num">21 sep</th><th class="num">22 sep</th><th class="num">23 sep</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead><tbody><tr><td>Facebook</td><td class="num">17</td><td class="num">9</td><td class="num">9</td><td class="num">16</td><td class="num">3</td><td class="num">12</td><td class="num">14</td><td class="num col-hoy">17</td><td class='num'>97</td></tr><tr><td>LinkedIn</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>2</td></tr><tr><td>WhatsApp</td><td class="num">36</td><td class="num">10</td><td class="num">27</td><td class="num">34</td><td class="num">2</td><td class="num">34</td><td class="num">21</td><td class="num col-hoy">13</td><td class='num'>177</td></tr><tr class="total"><td>Total</td><td class="num">55</td><td class="num">19</td><td class="num">36</td><td class="num">50</td><td class="num">5</td><td class="num">46</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">276</td></tr></tbody></table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>Hoy el reparto por fin se equilibra: AustraliaPRO 12, SkillsPRO 10 y Entrelingo 8. Es el primer día del periodo en que las tres líneas reciben trabajo parejo.</p>
+      <p>Cambia también el tipo de acción: 15 comentarios, el récord del periodo, frente a 13 publicaciones. Hasta ahora la publicación siempre dominaba con más del 80 %.</p>
+      <p>LinkedIn cumple siete días seguidos sin una sola gestión, y es el canal que GA4 muestra con tráfico real en dos líneas.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Sostener este reparto y el peso del comentario: es la acción que abre conversación, y la conversación es la que produjo el 63 % del ingreso del mes.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">2</span>Categorías publicadas por día</h3>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Categoría</th><th class="num">17 sep</th><th class="num">18 sep</th><th class="num">21 sep</th><th class="num">22 sep</th><th class="num">23 sep</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead>
+      <tbody><tr><td>Webinar</td><td class="num">0</td><td class="num">0</td><td class="num">36</td><td class="num">0</td><td class="num">0</td><td class="num">13</td><td class="num">29</td><td class="num col-hoy">10</td><td class='num'>88</td></tr><tr><td>Rayos X</td><td class="num">21</td><td class="num">15</td><td class="num">0</td><td class="num">11</td><td class="num">1</td><td class="num">27</td><td class="num">1</td><td class="num col-hoy">12</td><td class='num'>88</td></tr><tr><td>Formulario embajadores</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">34</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num col-hoy">2</td><td class='num'>38</td></tr><tr><td>Landing traducciones</td><td class="num">4</td><td class="num">1</td><td class="num">0</td><td class="num">3</td><td class="num">1</td><td class="num">4</td><td class="num">2</td><td class="num col-hoy">5</td><td class='num'>20</td></tr><tr><td>Discovery call</td><td class="num">15</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>15</td></tr><tr><td>Código de descuento</td><td class="num">9</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>10</td></tr><tr><td>wss Valentina</td><td class="num">2</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>5</td></tr><tr><td>Línea de negocio</td><td class="num">2</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>4</td></tr><tr><td>Recomendación de grupos</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num col-hoy">1</td><td class='num'>3</td></tr><tr><td>wss Operaciones</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>2</td></tr><tr><td>wss Sara closer</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>2</td></tr><tr><td>wss Paula JobPRO</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num col-hoy">0</td><td class='num'>1</td></tr>
+        <tr class="total"><td>Total</td><td class="num">55</td><td class="num">19</td><td class="num">36</td><td class="num">50</td><td class="num">5</td><td class="num">46</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">246</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>Webinar y Rayos X quedan empatadas en 88 gestiones cada una: entre las dos son el 64 % de todo el esfuerzo del periodo.</p>
+      <p>Landing de traducciones sube a 20 gestiones, su mejor registro, con 5 hoy. Sigue siendo la categoría con menos esfuerzo entre las grandes y la única con ventas atribuidas: $1.566,78 en el mes.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Sostener las 5 gestiones diarias de traducciones: es la proporción que acompañó el cierre de las últimas ventas.</p></div>
+  </div>
+
+  <div class="bloque">
+    <h3><span class="n">3</span>Gestiones por perfil y por tipo de grupo</h3>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Perfil</th><th class="num">17 sep</th><th class="num">18 sep</th><th class="num">21 sep</th><th class="num">22 sep</th><th class="num">23 sep</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead>
+      <tbody><tr><td>Angela</td><td class="num">—</td><td class="num">2</td><td class="num">3</td><td class="num">8</td><td class="num">2</td><td class="num">6</td><td class="num">14</td><td class="num col-hoy">12</td><td class='num'>47</td></tr><tr><td>Camila</td><td class="num">—</td><td class="num">3</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num col-hoy">3</td><td class='num'>15</td></tr><tr><td>Erika</td><td class="num">—</td><td class="num">3</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num col-hoy">2</td><td class='num'>14</td></tr><tr><td>María wss</td><td class="num">—</td><td class="num">10</td><td class="num">27</td><td class="num">34</td><td class="num">2</td><td class="num">34</td><td class="num">21</td><td class="num col-hoy">13</td><td class='num'>141</td></tr><tr><td>Perfil Mafe</td><td class="num">—</td><td class="num">1</td><td class="num">0</td><td class="num">2</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num col-hoy">0</td><td class='num'>4</td></tr>
+      </tbody>
+    </table></div>
+    <p class="nota">El desglose por perfil está disponible desde el 18 de septiembre. Hoy operaron los cuatro perfiles: Angela 12, María wss 13, Camila 3 y Erika 2.</p>
+    <h4 class="graf">Tipo de grupo</h4>
+    <div class="tabla-cont"><table>
+      <thead><tr><th>Tipo</th><th class="num">24 sep</th><th class="num">25 sep</th><th class="num col-hoy">28 sep</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td>Grupo externo</td><td class="num">35</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">100</td></tr>
+        <tr><td>Grupo interno</td><td class="num">11</td><td class="num">0</td><td class="num col-hoy">0</td><td class="num">11</td></tr>
+        <tr class="total"><td>Total</td><td class="num">46</td><td class="num">35</td><td class="num col-hoy">30</td><td class="num">111</td></tr>
+      </tbody>
+    </table></div>
+    <div class="analisis"><span class="et">Análisis</span>
+      <p>María wss concentra 141 de las 221 gestiones con desglose (64 %), aunque hoy baja a 13 y el reparto entre perfiles es el más parejo del periodo.</p>
+      <p>Por tercer día seguido no hay gestiones en grupos propios: 100 de 111 van a comunidades ajenas.</p>
+    </div>
+    <div class="accion"><span class="et">Solución</span><p>Sostener el registro de tipo de grupo: permitirá saber si el tráfico y las ventas vienen de comunidades propias o externas, algo que hoy no se puede distinguir.</p></div>
+  </div>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  Corte al 28 de septiembre de 2026, día parcial · Tráfico y conversiones: GA4 Data API, extracción por tramos sin truncado · Ventas: WooCommerce y registro de Operaciones · Agendas: Airtable · Citas: Bitrix24.
+</div></footer>
+
+<script>
+(function(){
+  var b=document.querySelectorAll('nav.tabs button'),p=document.querySelectorAll('.panel');
+  b.forEach(function(x){x.addEventListener('click',function(){
+    b.forEach(function(y){y.classList.toggle('on',y===x);});
+    p.forEach(function(q){q.classList.toggle('on',q.id===x.dataset.t);});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+})();
+</script>
+</body>
+</html>
